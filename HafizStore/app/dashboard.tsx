@@ -139,9 +139,10 @@ export default function Dashboard() {
           onPress={() => router.push('/settings')}
           activeOpacity={0.7}
         >
-          {storeLogo && (
-            <Image source={{ uri: storeLogo }} style={styles.logoSmall} />
-          )}
+          <Image 
+            source={storeLogo ? { uri: storeLogo } : require('../assets/images/icon.png')} 
+            style={styles.logoSmall} 
+          />
           <View style={styles.storeTitleContainer}>
             <Text style={[styles.storeTitle, { color: titleColor, fontSize: titleSize, textAlign: 'center' }]}>
               {storeName}

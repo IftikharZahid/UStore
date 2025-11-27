@@ -103,6 +103,17 @@ export default function AppSettings() {
     }
   };
 
+  const handleUseDefaultLogo = async () => {
+    try {
+      await AsyncStorage.removeItem(STORE_LOGO_KEY);
+      setStoreLogo(null);
+      Alert.alert('Success', 'Logo reset to default app icon');
+    } catch (error) {
+      console.error('Failed to reset logo', error);
+      Alert.alert('Error', 'Failed to reset logo');
+    }
+  };
+
   const handleEditName = () => {
     setTempStoreName(storeName);
     setIsEditingName(true);
@@ -187,18 +198,25 @@ export default function AppSettings() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Store Logo</Text>
           <TouchableOpacity style={styles.logoContainer} onPress={handlePickLogo}>
-            {storeLogo ? (
-              <Image source={{ uri: storeLogo }} style={styles.logo} />
-            ) : (
-              <View style={styles.logoPlaceholder}>
-                <Ionicons name="image-outline" size={40} color="#999" />
-              </View>
-            )}
+            <Image 
+              source={storeLogo ? { uri: storeLogo } : require('../assets/images/icon.png')} 
+              style={styles.logo} 
+            />
             <View style={styles.cameraBadge}>
               <Ionicons name="camera" size={16} color="#fff" />
             </View>
           </TouchableOpacity>
           <Text style={styles.helperText}>Tap to change store logo</Text>
+          
+          {storeLogo && (
+            <TouchableOpacity 
+              style={styles.defaultButton} 
+              onPress={handleUseDefaultLogo}
+            >
+              <Ionicons name="refresh-outline" size={20} color="#6C63FF" />
+              <Text style={styles.defaultButtonText}>Use Default App Icon</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         {/* Store Name Section */}
@@ -488,6 +506,22 @@ const styles = StyleSheet.create({
   },
   selectedSizeText: {
     color: '#6C63FF',
+    fontWeight: '600',
+  },
+  defaultButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F0EBFF',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginTop: 15,
+    gap: 8,
+  },
+  defaultButtonText: {
+    color: '#6C63FF',
+    fontSize: 16,
     fontWeight: '600',
   },
 });

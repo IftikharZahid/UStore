@@ -1,12 +1,13 @@
-import { View } from "react-native";
-import { Stack } from "expo-router";
-import Onboarding from "../components/Onboarding";
+import { useEffect } from "react";
+import { useRouter, Stack } from "expo-router";
 
 export default function Index() {
-  return (
-    <View style={{ flex: 1 }}>
-      <Stack.Screen options={{ headerShown: false }} />
-      <Onboarding />
-    </View>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to login screen on app start
+    router.replace('/login');
+  }, []);
+
+  return <Stack.Screen options={{ headerShown: false }} />;
 }

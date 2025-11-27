@@ -4,10 +4,10 @@ import {
   Text,
   View,
   TouchableOpacity,
-  SafeAreaView,
   ScrollView,
   Image,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -38,15 +38,24 @@ export default function Settings() {
     }
   };
 
+
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem(LOGIN_KEY);
+      // Clear the entire navigation stack
+      if (router.canDismiss()) {
+        router.dismissAll();
+      }
       router.replace('/login');
     } catch (error) {
       console.error('Failed to clear login state', error);
+      if (router.canDismiss()) {
+        router.dismissAll();
+      }
       router.replace('/login');
     }
   };
+
 
 
   return (
@@ -56,13 +65,10 @@ export default function Settings() {
       {/* Header with Logo */}
       <View style={styles.header}>
         <View style={styles.logoContainer}>
-          {storeLogo ? (
-            <Image source={{ uri: storeLogo }} style={styles.logo} />
-          ) : (
-            <View style={styles.logoPlaceholder}>
-              <Ionicons name="storefront" size={40} color="#003366" />
-            </View>
-          )}
+          <Image 
+            source={storeLogo ? { uri: storeLogo } : require('../assets/images/icon.png')} 
+            style={styles.logo} 
+          />
         </View>
       </View>
 
@@ -97,7 +103,7 @@ export default function Settings() {
           >
             <View style={styles.menuItemLeft}>
               <View style={styles.iconCircle}>
-                <Ionicons name="information-circle" size={22} color="#6C63FF" />
+                <Ionicons name="information-circle" size={22} color="#e67e22" />
               </View>
               <Text style={styles.menuText}>About App</Text>
             </View>
@@ -138,7 +144,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     borderWidth: 3,
-    borderColor: '#003366',
+    borderColor: '#e67e22',
   },
   logoPlaceholder: {
     width: 100,
@@ -146,7 +152,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: '#fff',
     borderWidth: 3,
-    borderColor: '#003366',
+    borderColor: '#e67e22',
     alignItems: 'center',
     justifyContent: 'center',
   },
