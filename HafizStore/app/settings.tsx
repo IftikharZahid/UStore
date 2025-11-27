@@ -103,7 +103,7 @@ export default function Settings() {
           >
             <View style={styles.menuItemLeft}>
               <View style={styles.iconCircle}>
-                <Ionicons name="information-circle" size={22} color="#e67e22" />
+                <Ionicons name="information-circle" size={22} color="#6C63FF" />
               </View>
               <Text style={styles.menuText}>About App</Text>
             </View>

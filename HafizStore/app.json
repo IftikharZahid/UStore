@@ -7,7 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "hafizstore",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.hafizstore.app"
@@ -26,7 +26,8 @@
         "ACCESS_NETWORK_STATE"
       ],
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "jsEngine": "hermes"
     },
     "web": {
       "output": "static",
@@ -54,7 +55,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "98abbb59-4047-4069-a580-4b5acb8c707d"
+        "projectId": "7702ef6d-7cdd-4402-a479-6449b6af374f"
       }
     }
   }

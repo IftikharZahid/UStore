@@ -56,56 +56,75 @@ export default function AboutApp() {
           <Text style={styles.developerTitle}>App Creator</Text>
         </View>
 
-        {/* Contact Information */}
-        <View style={styles.contactSection}>
-          <TouchableOpacity 
-            style={styles.contactItem}
-            onPress={() => handleLink('https://facebook.com')}
-          >
-            <View style={styles.contactIcon}>
-              <Ionicons name="logo-facebook" size={24} color="#1877F2" />
-            </View>
-            <Text style={styles.contactText}>Facebook</Text>
-            <Ionicons name="chevron-forward" size={20} color="#999" />
-          </TouchableOpacity>
+        {/* Divider */}
+        <View style={styles.dividerContainer}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerText}>About Me</Text>
+          <View style={styles.dividerLine} />
+        </View>
 
+        {/* Professional Bio */}
+        <View style={styles.bioSection}>
+          <Text style={styles.bioText}>
+            I am a <Text style={styles.boldText}>Mobile App Developer & AI Enthusiast</Text>. I build high-quality mobile applications using React Native and explore modern AI solutions.
+          </Text>
+          
+          <Text style={styles.bioText}>
+            Contact for your business app, to digitize your business and help it grow and rank online.
+          </Text>
+          
           <TouchableOpacity 
-            style={styles.contactItem}
-            onPress={handleEmail}
+            style={styles.githubLink}
+            onPress={() => handleLink('https://github.com/IftikharZahid')}
           >
-            <View style={styles.contactIcon}>
-              <Ionicons name="mail" size={24} color="#EA4335" />
-            </View>
-            <Text style={styles.contactText}>IftikharXahid@gmail.com</Text>
-            <Ionicons name="chevron-forward" size={20} color="#999" />
-          </TouchableOpacity>
-
-          <TouchableOpacity 
-            style={styles.contactItem}
-            onPress={() => handleLink('https://Zahid.codes')}
-          >
-            <View style={styles.contactIcon}>
-              <Ionicons name="globe" size={24} color="#4CAF50" />
-            </View>
-            <Text style={styles.contactText}>https://Zahid.codes</Text>
-            <Ionicons name="chevron-forward" size={20} color="#999" />
-          </TouchableOpacity>
-
-          <TouchableOpacity 
-            style={styles.contactItem}
-            onPress={handlePhone}
-          >
-            <View style={styles.contactIcon}>
-              <Ionicons name="call" size={24} color="#FF9800" />
-            </View>
-            <Text style={styles.contactText}>+92 300 7971374</Text>
-            <Ionicons name="chevron-forward" size={20} color="#999" />
+            <Ionicons name="logo-github" size={20} color="#6C63FF" />
+            <Text style={styles.githubText}>View my projects on GitHub</Text>
           </TouchableOpacity>
         </View>
 
-        {/* Thank You Message */}
-        <View style={styles.thankYouSection}>
-          <Text style={styles.thankYouText}>Thank you for using this application</Text>
+ {/* Divider */}
+        <View style={styles.dividerContainer}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerText}>Contact Here</Text>
+          <View style={styles.dividerLine} />
+        </View>
+
+        {/* Quick Contact Buttons */}
+        <View style={styles.quickContactSection}>
+          <TouchableOpacity 
+            style={styles.quickContactButton}
+            onPress={handlePhone}
+          >
+            <Ionicons name="call" size={24} color="#fff" />
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={[styles.quickContactButton, styles.whatsappButton]}
+            onPress={() => handleLink('https://wa.me/923007971374')}
+          >
+            <Ionicons name="logo-whatsapp" size={24} color="#fff" />
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={[styles.quickContactButton, styles.emailButton]}
+            onPress={handleEmail}
+          >
+            <Ionicons name="mail" size={24} color="#fff" />
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={[styles.quickContactButton, styles.facebookButton]}
+            onPress={() => handleLink('https://facebook.com/iftikharxahid')}
+          >
+            <Ionicons name="logo-facebook" size={24} color="#fff" />
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={[styles.quickContactButton, styles.websiteButton]}
+            onPress={() => handleLink('https://Zahid.codes')}
+          >
+            <Ionicons name="globe-outline" size={24} color="#fff" />
+          </TouchableOpacity>
         </View>
 
         {/* App Version */}
@@ -150,7 +169,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 20,
     padding: 30,
-    marginBottom: 20,
+    marginBottom: 10,
     width: '100%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -191,12 +210,29 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
+  dividerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    marginVertical: 20,
+  },
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#E0E0E0',
+  },
+  dividerText: {
+    marginHorizontal: 15,
+    fontSize: 14,
+    color: '#999',
+    fontWeight: '600',
+  },
   contactSection: {
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 15,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
@@ -225,23 +261,80 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
   },
-  thankYouSection: {
+  quickContactSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 20,
+    gap: 10,
+  },
+  quickContactButton: {
+    flex: 1,
+    backgroundColor: '#FF9800',
+    borderRadius: 10,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  whatsappButton: {
+    backgroundColor: '#25D366',
+  },
+  emailButton: {
+    backgroundColor: '#EA4335',
+  },
+  facebookButton: {
+    backgroundColor: '#1877F2',
+  },
+  websiteButton: {
+    backgroundColor: '#4CAF50',
+  },
+  quickContactButtonText: {
+    color: '#fff',
+    fontSize: 10,
+    fontWeight: '600',
+    marginTop: 4,
+  },
+  bioSection: {
+    width: '100%',
     backgroundColor: '#fff',
     borderRadius: 15,
-    padding: 25,
+    padding: 20,
     marginBottom: 20,
-    width: '100%',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 5,
     elevation: 2,
   },
-  thankYouText: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-    fontStyle: 'italic',
+  bioText: {
+    fontSize: 15,
+    color: '#555',
+    lineHeight: 24,
+    marginBottom: 15,
+    textAlign: 'left',
+  },
+  boldText: {
+    fontWeight: 'bold',
+    color: '#6C63FF',
+  },
+  githubLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+    padding: 12,
+    borderRadius: 10,
+    marginTop: 5,
+  },
+  githubText: {
+    fontSize: 14,
+    color: '#6C63FF',
+    fontWeight: '600',
+    marginLeft: 10,
   },
   versionText: {
     fontSize: 12,

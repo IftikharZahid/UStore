@@ -58,6 +58,13 @@ export default function Login() {
     }
   };
 
+  const handleLink = async (url: string) => {
+    const supported = await Linking.canOpenURL(url);
+    if (supported) {
+      await Linking.openURL(url);
+    }
+  };
+
   const handlePhone = () => {
     Linking.openURL('tel:+923007971374');
   };
@@ -142,8 +149,11 @@ export default function Login() {
             {/* Social Contact Buttons */}
             <Text style={styles.contactText}>Contact via</Text>
             <View style={styles.socialContainer}>
-              <TouchableOpacity style={styles.socialButton} onPress={handlePhone}>
-                <Ionicons name="call" size={24} color="#FF9800" />
+              <TouchableOpacity 
+                style={styles.socialButton} 
+                onPress={() => handleLink('https://wa.me/923007971374')}
+              >
+                <Ionicons name="logo-whatsapp" size={24} color="#25D366" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.socialButton} onPress={handleFacebook}>
                 <Ionicons name="logo-facebook" size={24} color="#4267B2" />
@@ -192,7 +202,7 @@ const styles = StyleSheet.create({
     marginBottom: 35,
   },
   welcomeTitle: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     color: '#2D2D2D',
     marginBottom: 6,
